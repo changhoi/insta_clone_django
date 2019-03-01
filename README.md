@@ -1,4 +1,9 @@
+# Instagram Cloning
+
+Cloning Instagram with Django and React
+
 - Python 3.7
+- Cookiecutter
 - Nodejs
 - NPM
 - Yarn
