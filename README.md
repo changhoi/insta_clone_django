@@ -1,0 +1,5 @@
+- Python 3.7
+- Nodejs
+- NPM
+- Yarn
+- (Postgres) pgAdmin4 v4.2
