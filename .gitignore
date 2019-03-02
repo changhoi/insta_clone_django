@@ -284,4 +284,6 @@ instaclone/media/
 
 .pytest_cache/
 
+.idea/
+
 
