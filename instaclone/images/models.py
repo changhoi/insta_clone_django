@@ -1,5 +1,6 @@
 from django.db import models
 from instaclone.users.models import *
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -18,6 +19,7 @@ class Image(TimeStampedModel):
     location = models.CharField(max_length=140)
     caption = models.TextField()
     creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="images")
+    tags = TaggableManager()
 
     @property
     def like_count(self):

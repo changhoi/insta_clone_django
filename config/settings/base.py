@@ -68,6 +68,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'rest_framework',
     'taggit',
+    'taggit_serializer',
 ]
 LOCAL_APPS = [
     'instaclone.users.apps.UsersAppConfig',
@@ -250,3 +251,4 @@ SOCIALACCOUNT_ADAPTER = 'instaclone.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+TAGGIT_CASE_INSENSITIVE = True
