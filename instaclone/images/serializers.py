@@ -5,6 +5,15 @@ from . import models
 from taggit_serializer.serializers import (TagListSerializerField,
                                            TaggitSerializer)
 
+class SmallImageSerializer(serializers.ModelSerializer):
+    '''Used for thr Notifications'''
+
+    class Meta:
+        models = models.Image
+        fields = (
+            'file',
+        )
+
 
 
 class CountImageSerializer(serializers.ModelSerializer):
