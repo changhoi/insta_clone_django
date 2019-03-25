@@ -12,4 +12,5 @@ urlpatterns = [
     path("<str:username>/", views.UserProfile.as_view(), name='user_profile'),
     path("<str:username>/followers/", views.UserFollowers.as_view(), name='user_followers'),
     path("<str:username>/following/", views.UserFollowing.as_view(), name='user_followers'),
+    path("<str:username>/password/", views.changePassword.as_view(), name='change_password')
 ]

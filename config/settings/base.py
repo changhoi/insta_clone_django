@@ -2,6 +2,7 @@
 Base settings to build other settings files upon.
 """
 
+from . import secret;
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (instaclone/config/settings/base.py - 3 = instaclone/)
@@ -39,7 +40,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://postgres:root@localhost:5432/instaclone'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': secret.DB['NAME'],
+        'HOST': secret.DB['HOST'],
+        'USER': secret.DB['USER'],
+        'PASSWORD': secret.DB['PASSWORD']
+    }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -253,3 +260,9 @@ SOCIALACCOUNT_ADAPTER = 'instaclone.users.adapters.SocialAccountAdapter'
 # Your stuff...
 # ------------------------------------------------------------------------------
 TAGGIT_CASE_INSENSITIVE = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}

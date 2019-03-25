@@ -5,6 +5,8 @@ from . import serializers
 # Create your views here.
 from instaclone.users import models
 from notifications.views import create_notification
+from rest_framework.permissions import IsAuthenticated
+
 
 class ExploreUsers(APIView):
 
@@ -50,6 +52,7 @@ class UnfollowUser(APIView):
 
 
 class UserProfile(APIView):
+    permission_classes = (IsAuthenticated,)
 
     @staticmethod
     def get_user(username):
@@ -129,3 +132,30 @@ class Search(APIView):
 
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class changePassword(APIView):
+    
+    def put(self, request, username, format=None) :
+        user = request.user
+
+        if user.username != username:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        current_password = request.data.get('current_password', None)
+        
+        if current_password is not None:
+            password_match = user.check_password(current_password)
+            
+            if password_match:
+                new_password = request.data.get('new_password', None)
+                
+                if new_password is not None:
+                    user.set_password(new_password)
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+
+                else : return Response(status=status.HTTP_400_BAD_REQUEST)
+            
+            else : return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        else: return Response(status=status.HTTP_400_BAD_REQUEST)
