@@ -6,6 +6,7 @@ from . import serializers
 from instaclone.users import models
 from notifications.views import create_notification
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class ExploreUsers(APIView):
@@ -53,6 +54,8 @@ class UnfollowUser(APIView):
 
 class UserProfile(APIView):
     permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
+
 
     @staticmethod
     def get_user(username):

@@ -6,10 +6,15 @@ from instaclone.users.serializers import ListUserSerializer
 from . import models, serializers
 from notifications.views import create_notification
 from instaclone.users import models as users_models
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
 class Feed(APIView):
+
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
 
     def get(self, request, format=None):
 
