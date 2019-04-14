@@ -1,16 +1,16 @@
 from django.urls import path
 
-from instaclone.users.views import (
-    user_list_view,
-    user_redirect_view,
-    user_update_view,
-    user_detail_view,
-)
+
+from instaclone.users import views
 
 app_name = "users"
 urlpatterns = [
-    path("", view=user_list_view, name="list"),
-    path("~redirect/", view=user_redirect_view, name="redirect"),
-    path("~update/", view=user_update_view, name="update"),
-    path("<str:username>/", view=user_detail_view, name="detail"),
+    path("explore/", view=views.ExploreUsers.as_view(), name="explore"),
+    path("search/", views.Search.as_view(), name='search'),
+    path("<int:user_id>/follow", views.FollowUser.as_view(), name='follow_user'),
+    path("<int:user_id>/unfollow", views.UnfollowUser.as_view(), name='unfollow_user'),
+    path("<str:username>/", views.UserProfile.as_view(), name='user_profile'),
+    path("<str:username>/followers/", views.UserFollowers.as_view(), name='user_followers'),
+    path("<str:username>/following/", views.UserFollowing.as_view(), name='user_followers'),
+    path("<str:username>/password/", views.changePassword.as_view(), name='change_password')
 ]

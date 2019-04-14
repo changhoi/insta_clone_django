@@ -1,5 +1,6 @@
 ### Python template
 # Byte-compiled / optimized / DLL files
+secret.py
 __pycache__/
 *.py[cod]
 *$py.class
@@ -285,5 +286,7 @@ instaclone/media/
 .pytest_cache/
 
 .idea/
+
+.vscode/
 
 

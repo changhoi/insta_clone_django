@@ -4,7 +4,13 @@ from . import views
 app_name = "images"
 
 urlpatterns = [
-    re_path(r'^all/$', views.ListAllImages.as_view(), name='all_images'),
-    path('comments/', views.ListAllComments.as_view(), name='all_comments'),
-    path('likes/', views.ListAllLikes.as_view(), name='all_likes'),
+    path('', views.Feed.as_view(), name='feed'),
+    path('<int:image_id>/like/', views.LikeImage.as_view(), name='like_image'),
+    path('<int:image_id>/unlike/', views.UnlikeImage.as_view(), name='unlike_image'),
+    path('<int:image_id>/comment/', views.CommentOnImage.as_view(), name='comment_on_image'),
+    path('<int:image_id>/comment/<int:comment_id>/', views.ModerateComment.as_view(), name='comment_on_image'),
+    path('<int:image_id>/', views.ImageDetail.as_view(), name='image_detail'),
+    path('comment/<int:comment_id>/', views.Comment.as_view(),name='comment'),
+    path('search/', views.Search.as_view(), name='search'),
+
 ]
